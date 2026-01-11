@@ -46,17 +46,18 @@ export default function Clients() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cyan-50">
       {/* Hero Section */}
       <section className="relative bg-slate-900 text-white py-20">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1582193607281-dafb7941640f?w=1920&q=80"
+            src="/slider5.png"
             alt="Our Clients"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-70"
+            priority
           />
-          <div className="absolute inset-0 bg-slate-900/70"></div>
+          <div className="absolute inset-0 bg-slate-900/40"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -75,7 +76,7 @@ export default function Clients() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white/80">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => {
@@ -97,7 +98,7 @@ export default function Clients() {
       </section>
 
       {/* Industries Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-cyan-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">Industries We Serve</h2>
@@ -122,7 +123,7 @@ export default function Clients() {
       </section>
 
       {/* Client Logos Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white/80">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">Our Valued Clients</h2>
@@ -131,13 +132,34 @@ export default function Clients() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {[...Array(18)].map((_, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6 flex items-center justify-center h-32 bg-slate-50">
-                  <div className="text-center">
-                    <Building2 className="w-10 h-10 text-blue-600 mx-auto mb-2" />
-                    <p className="text-xs text-slate-600 font-medium">Client {index + 1}</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {[
+              'cl-1.png',
+              'client2-1.png',
+              'client3-1.png',
+              'client4.png',
+              'client5.png',
+              'CLIENT6.png',
+              'client7.png',
+              'client8.png',
+              'client9.png',
+              'client10.png',
+              'client11.png',
+              'client12.png',
+              'client13.png',
+              'clinet14.png',
+              'client15.png',
+              'client16.png'
+            ].map((logo, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6 flex items-center justify-center h-32 bg-white">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={`/${logo}`}
+                      alt={`Client ${index + 1}`}
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                 </CardContent>
               </Card>
@@ -153,7 +175,7 @@ export default function Clients() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-cyan-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">Client Testimonials</h2>

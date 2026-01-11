@@ -65,8 +65,13 @@ export default function Navigation() {
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center space-x-3"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                  AE
+                <div className="relative w-12 h-12">
+                  <Image
+                    src="/logo.png"
+                    alt="Advick Enterprises Logo"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
                 <div>
                   <div className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">

@@ -80,17 +80,18 @@ export default function Contact() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cyan-50">
       {/* Hero Section */}
       <section className="relative bg-slate-900 text-white py-20">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1577459212160-e089168a797d?w=1920&q=80"
+            src="/slider13.png"
             alt="Contact Us"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-70"
+            priority
           />
-          <div className="absolute inset-0 bg-slate-900/70"></div>
+          <div className="absolute inset-0 bg-slate-900/40"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -109,7 +110,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-cyan-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => {
@@ -143,7 +144,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Form and Map Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white/80">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -307,7 +308,7 @@ export default function Contact() {
       </section>
 
       {/* Quick Contact Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-cyan-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">Quick Contact</h2>

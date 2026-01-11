@@ -31,12 +31,12 @@ export default function About() {
   }
 
   const expertise = [
-    'Temperature & Cooling Processes',
-    'Flow Measurement Systems',
-    'Pressure Measurement Solutions',
-    'Level Instrumentation',
-    'Process Automation & Control',
-    'Batching Systems'
+    'Electromagnetic Flow Meters',
+    'RTD Head Type Thermocouples',
+    'Analog Pressure Gauges',
+    'Head Type RTD Sensors',
+    'Digital PID Temperature Controllers',
+    'Analog Temperature Gauges'
   ]
 
   const team = [
@@ -55,17 +55,18 @@ export default function About() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cyan-50">
       {/* Hero Section */}
       <section className="relative bg-slate-900 text-white py-20">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920&q=80"
+            src="/slider7.png"
             alt="About Advick Enterprises"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-70"
+            priority
           />
-          <div className="absolute inset-0 bg-slate-900/70"></div>
+          <div className="absolute inset-0 bg-slate-900/40"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -84,20 +85,20 @@ export default function About() {
       </section>
 
       {/* Company Overview */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white/80">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold mb-6 text-slate-900">Our Company</h2>
               <div className="space-y-4 text-slate-700 leading-relaxed">
                 <p>
-                  <strong>Advick Enterprises</strong> was established in 2018 in Bhopal, Madhya Pradesh. We are a trusted supplier of industrial instrumentation products, specializing in measurement and control equipment for various industrial applications.
+                  <strong>Advick Enterprises</strong> is a well-established vendor and supplier that offers a wide range of advanced instruments like electromagnetic flow meters, RTD head type thermocouples, analog pressure gauges, head type RTD sensors, digital PID temperature controllers, analog temperature gauges, and flow instrumentation.
                 </p>
                 <p>
-                  Our company has built a strong reputation by providing quality products and reliable service to industries across the region. We work with manufacturing plants, chemical facilities, pharmaceutical companies, and other process industries.
+                  The offered products are designed with superior performance in mind, maximum accuracy, durability, and efficiency for all industries. From critical flow measurement with zero pressure drop to shock & vibration-resistant pressure gauges and auto-tuning PID controllers, we make sure that each product is a solution for your needs.
                 </p>
                 <p>
-                  We supply a comprehensive range of instrumentation including flow meters, pressure transmitters, temperature sensors, level switches, and related accessories. Our team has practical knowledge of industrial processes and can help customers select the right instruments for their applications.
+                  We provide more than quality equipment - we bring a partnership to help you streamline your operations and elevate your processes. Our team has practical knowledge of industrial processes and can help customers select the right instruments for their applications.
                 </p>
               </div>
             </div>
@@ -131,7 +132,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-cyan-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">What Drives Us</h2>
@@ -157,7 +158,7 @@ export default function About() {
       </section>
 
       {/* Expertise Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white/80">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">Our Expertise</h2>
@@ -178,7 +179,7 @@ export default function About() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-cyan-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">Our Leadership</h2>
@@ -209,102 +210,153 @@ export default function About() {
         </div>
       </section>
 
-      {/* Industries We Serve */}
-      <section className="py-16 bg-white">
+      {/* Our Capabilities */}
+      <section className="py-16 bg-white/80">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900">Industries We Serve</h2>
-            <p className="text-slate-600">We provide instrumentation solutions to various industrial sectors</p>
+            <h2 className="text-3xl font-bold mb-4 text-slate-900">Our Capabilities</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              What we can do for your business
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              'Chemical Processing',
-              'Oil & Gas',
-              'Pharmaceutical',
-              'Food & Beverage',
-              'Water Treatment',
-              'Power Plants',
-              'Manufacturing',
-              'HVAC Systems'
-            ].map((industry, index) => (
-              <div key={index} className="bg-slate-50 p-6 rounded-lg text-center hover:bg-slate-100 transition-colors">
-                <CheckCircle2 className="h-6 w-6 text-blue-600 mx-auto mb-3" />
-                <p className="font-medium text-slate-800">{industry}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose Advick Enterprises</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { iconName: 'Award', title: 'Quality Products', desc: 'ISO compliant instrumentation' },
-              { iconName: 'Users', title: 'Expert Team', desc: 'Experienced professionals' },
-              { iconName: 'CheckCircle2', title: 'Reliable Service', desc: 'Timely delivery & support' },
-              { iconName: 'TrendingUp', title: 'Fair Pricing', desc: 'Competitive rates' }
-            ].map((item, index) => {
-              const Icon = getIcon(item.iconName)
-              return (
-                <div key={index} className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
-                  <div className="bg-white/20 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                  <p className="text-blue-100 text-sm">{item.desc}</p>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="bg-slate-900 rounded-lg overflow-hidden">
-            <div className="grid md:grid-cols-2">
-              <div className="p-8 md:p-12 text-white">
-                <h2 className="text-3xl font-bold mb-4">
-                  Partner With Us
-                </h2>
-                <p className="text-slate-300 mb-6">
-                  Contact us for product inquiries, technical specifications, or quotations. Our team is ready to assist you with your instrumentation needs.
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-4 text-slate-900">Product Supply</h3>
+                <p className="text-slate-600 mb-4">
+                  We supply a wide range of industrial instrumentation products from reputed manufacturers. Our inventory includes flow meters, pressure transmitters, temperature sensors, level switches, and related accessories.
                 </p>
-                <div className="flex flex-wrap gap-4">
-                  <Link href="/contact">
-                    <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                      Get a Quote
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <a href="tel:7987004209">
-                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900">
-                      <Phone className="mr-2 h-4 w-4" />
-                      Call Now
-                    </Button>
-                  </a>
-                </div>
+                <ul className="space-y-2 text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Wide product range</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Quality certified products</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Competitive pricing</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-4 text-slate-900">Technical Consultation</h3>
+                <p className="text-slate-600 mb-4">
+                  Our team provides technical guidance for selecting appropriate instrumentation based on your process requirements. We help you understand specifications and recommend suitable products.
+                </p>
+                <ul className="space-y-2 text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Application analysis</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Product recommendations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Technical specifications</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-4 text-slate-900">Installation Support</h3>
+                <p className="text-slate-600 mb-4">
+                  We provide guidance for proper installation of instrumentation equipment. Our team can assist with installation procedures and best practices to ensure optimal performance.
+                </p>
+                <ul className="space-y-2 text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Installation guidelines</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Wiring diagrams</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Commissioning support</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-4 text-slate-900">After-Sales Service</h3>
+                <p className="text-slate-600 mb-4">
+                  We offer after-sales support including troubleshooting assistance, spare parts supply, and technical queries. Our team is available to help resolve any issues you may face.
+                </p>
+                <ul className="space-y-2 text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Technical support</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Spare parts availability</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Troubleshooting assistance</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Commitment */}
+      <section className="py-16 bg-cyan-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900">Our Commitment to Clients</h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow">
+                <h3 className="text-xl font-bold mb-3 text-slate-900">Quality Assurance</h3>
+                <p className="text-slate-600">
+                  We supply products that meet industry standards and quality requirements. All our products come with manufacturer warranties and certifications.
+                </p>
               </div>
-              <div className="relative h-64 md:h-auto">
-                <Image
-                  src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80"
-                  alt="Contact Us"
-                  fill
-                  className="object-cover"
-                />
+
+              <div className="bg-white p-6 rounded-lg shadow">
+                <h3 className="text-xl font-bold mb-3 text-slate-900">Timely Delivery</h3>
+                <p className="text-slate-600">
+                  We understand the importance of project timelines. We maintain good stock levels and work with reliable logistics partners to ensure prompt delivery.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow">
+                <h3 className="text-xl font-bold mb-3 text-slate-900">Transparent Pricing</h3>
+                <p className="text-slate-600">
+                  Our quotations are clear and transparent with no hidden costs. We provide competitive pricing while maintaining product quality standards.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow">
+                <h3 className="text-xl font-bold mb-3 text-slate-900">Customer Support</h3>
+                <p className="text-slate-600">
+                  Our team is accessible and responsive to customer queries. We believe in building long-term relationships through reliable service and support.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   )
 }

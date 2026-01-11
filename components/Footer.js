@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin, Facebook, Twitter, Youtube, Instagram, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   const quickLinks = [
@@ -11,6 +12,12 @@ export default function Footer() {
     { href: '/products', label: 'Products' },
     { href: '/clients', label: 'Our Clients' },
     { href: '/contact', label: 'Contact' },
+  ]
+
+  const legalLinks = [
+    { href: '/privacy-policy', label: 'Privacy Policy' },
+    { href: '/terms-conditions', label: 'Terms & Conditions' },
+    { href: '/cookie-policy', label: 'Cookie Policy' },
   ]
 
   const services = [
@@ -26,17 +33,23 @@ export default function Footer() {
     <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="md:col-span-2"
           >
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                AE
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/logo.png"
+                  alt="Advick Enterprises Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div>
                 <div className="text-lg font-bold">Advick Enterprises</div>
@@ -44,7 +57,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-blue-100 mb-6">
-              Leading provider of industrial instrumentation solutions for Temperature, Flow, Level & Pressure measurement.
+              A well-established vendor offering advanced instruments with superior performance, maximum accuracy, durability, and efficiency for all industries.
             </p>
             <div className="flex space-x-3">
               <motion.a
@@ -112,7 +125,7 @@ export default function Footer() {
           >
             <h3 className="text-lg font-bold mb-6">Our Services</h3>
             <ul className="space-y-3">
-              {services.map((service) => (
+              {services.slice(0, 4).map((service) => (
                 <li key={service}>
                   <Link href="/products">
                     <motion.div
@@ -121,6 +134,31 @@ export default function Footer() {
                     >
                       <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                       {service}
+                    </motion.div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Legal Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+          >
+            <h3 className="text-lg font-bold mb-6">Legal</h3>
+            <ul className="space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href}>
+                    <motion.div
+                      whileHover={{ x: 4 }}
+                      className="flex items-center text-blue-100 hover:text-white transition-colors group"
+                    >
+                      <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      {link.label}
                     </motion.div>
                   </Link>
                 </li>
