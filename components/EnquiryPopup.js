@@ -20,6 +20,23 @@ export default function EnquiryPopup({ isOpen, onClose, productName = '' }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
+  const productOptions = [
+    'Electromagnetic Flow Meters',
+    'Ultrasonic Water Meter',
+    'Turbine Flow Meter',
+    'Analog Pressure Gauges',
+    'Pressure Transmitters',
+    'RTD PT100 Temperature Sensor',
+    'K Type Thermocouples',
+    'PID Temperature Controller',
+    'Ultrasonic Level Transmitter',
+    'Float Level Switch',
+    'Thermowells',
+    'Signal Isolators',
+    'Proximity Sensors',
+    'Other'
+  ]
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -31,7 +48,20 @@ export default function EnquiryPopup({ isOpen, onClose, productName = '' }) {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
+    // Format WhatsApp message
+    const whatsappMessage = `*New Product Enquiry*%0A%0A` +
+      `*Name:* ${formData.name}%0A` +
+      `*Email:* ${formData.email}%0A` +
+      `*Phone:* ${formData.phone}%0A` +
+      `*Company:* ${formData.company || 'Not provided'}%0A` +
+      `*Product:* ${formData.product || 'Not specified'}%0A` +
+      `*Message:* ${formData.message}%0A`
+
+    // Open WhatsApp with the message
+    const whatsappUrl = `https://wa.me/917987004209?text=${whatsappMessage}`
+    window.open(whatsappUrl, '_blank')
+
+    // Show success message
     setTimeout(() => {
       setIsSubmitting(false)
       setSubmitSuccess(true)
@@ -49,12 +79,13 @@ export default function EnquiryPopup({ isOpen, onClose, productName = '' }) {
         setSubmitSuccess(false)
         onClose()
       }, 2000)
-    }, 1000)
+    }, 500)
   }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[500px] max-h-[85vh]">
+        <div className="overflow-y-auto max-h-[calc(85vh-80px)] pr-2 -mr-2 hide-scrollbar">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-slate-900">
             Product Enquiry
@@ -148,38 +179,25 @@ export default function EnquiryPopup({ isOpen, onClose, productName = '' }) {
               </div>
             </div>
 
-            {productName && (
-              <div className="space-y-2">
-                <Label htmlFor="product" className="text-slate-700">
-                  Product of Interest
-                </Label>
-                <Input
-                  id="product"
-                  name="product"
-                  type="text"
-                  value={formData.product}
-                  onChange={handleChange}
-                  className="bg-slate-50"
-                  readOnly
-                />
-              </div>
-            )}
-
-            {!productName && (
-              <div className="space-y-2">
-                <Label htmlFor="product" className="text-slate-700">
-                  Product of Interest
-                </Label>
-                <Input
-                  id="product"
-                  name="product"
-                  type="text"
-                  placeholder="Which product are you interested in?"
-                  value={formData.product}
-                  onChange={handleChange}
-                />
-              </div>
-            )}
+            <div className="space-y-2">
+              <Label htmlFor="product" className="text-slate-700">
+                Product of Interest
+              </Label>
+              <select
+                id="product"
+                name="product"
+                value={formData.product}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Select a product...</option>
+                {productOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
 
             <div className="space-y-2">
               <Label htmlFor="message" className="text-slate-700">
@@ -219,6 +237,7 @@ export default function EnquiryPopup({ isOpen, onClose, productName = '' }) {
             </div>
           </form>
         )}
+        </div>
       </DialogContent>
     </Dialog>
   )

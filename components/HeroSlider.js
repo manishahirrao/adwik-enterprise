@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
-export default function HeroSlider() {
+export default function HeroSlider({ onEnquiryClick }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const slides = [
@@ -15,21 +15,21 @@ export default function HeroSlider() {
       title: 'Industrial Instrumentation Solutions',
       subtitle: 'Advanced instruments with superior performance, maximum accuracy, and durability',
       cta1: { text: 'View Products', link: '/products' },
-      cta2: { text: 'Get Quote', link: '/contact' }
+      cta2: { text: 'Get Quote', action: 'enquiry' }
     },
     {
       image: '/slider7.png',
       title: 'Temperature Measurement Experts',
       subtitle: 'RTD sensors, thermocouples, and temperature controllers for precise monitoring',
       cta1: { text: 'View Products', link: '/products' },
-      cta2: { text: 'Get Quote', link: '/contact' }
+      cta2: { text: 'Get Quote', action: 'enquiry' }
     },
     {
       image: '/slider13.png',
       title: 'Flow & Pressure Instrumentation',
       subtitle: 'Electromagnetic flow meters and pressure transmitters for industrial applications',
       cta1: { text: 'View Products', link: '/products' },
-      cta2: { text: 'Get Quote', link: '/contact' }
+      cta2: { text: 'Get Quote', action: 'enquiry' }
     }
   ]
 
@@ -97,11 +97,14 @@ export default function HeroSlider() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link href={slides[currentSlide].cta2.link}>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900">
-                  {slides[currentSlide].cta2.text}
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white bg-blue-700 text-white hover:bg-white hover:text-slate-900"
+                onClick={onEnquiryClick}
+              >
+                {slides[currentSlide].cta2.text}
+              </Button>
             </div>
           </div>
         </div>

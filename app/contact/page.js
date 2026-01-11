@@ -30,7 +30,19 @@ export default function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate form submission
+    // Format WhatsApp message
+    const whatsappMessage = `*New Contact Form Submission*%0A%0A` +
+      `*Name:* ${formData.name}%0A` +
+      `*Email:* ${formData.email}%0A` +
+      `*Phone:* ${formData.phone}%0A` +
+      `*Company:* ${formData.company || 'Not provided'}%0A` +
+      `*Message:* ${formData.message}%0A`
+
+    // Open WhatsApp with the message
+    const whatsappUrl = `https://wa.me/917987004209?text=${whatsappMessage}`
+    window.open(whatsappUrl, '_blank')
+    
+    // Show success message
     setTimeout(() => {
       setIsSubmitting(false)
       setSubmitStatus('success')
@@ -38,7 +50,7 @@ export default function Contact() {
       
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000)
-    }, 1500)
+    }, 500)
   }
 
   const contactInfo = [
@@ -109,39 +121,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Info Cards */}
-      <section className="py-16 bg-cyan-50">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon
-              return (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-3 text-slate-900">{info.title}</h3>
-                    <div className="space-y-1">
-                      {info.details.map((detail, idx) => (
-                        <p key={idx} className="text-slate-600 text-sm">
-                          {info.links && info.links[idx] ? (
-                            <a href={info.links[idx]} className="hover:text-blue-600 transition-colors">
-                              {detail}
-                            </a>
-                          ) : (
-                            detail
-                          )}
-                        </p>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Contact Form and Map Section */}
       <section className="py-16 bg-white/80">
@@ -307,50 +287,36 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Quick Contact Section */}
+     {/* Contact Info Cards */}
       <section className="py-16 bg-cyan-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900">Quick Contact</h2>
-            <p className="text-slate-600">Choose your preferred way to reach us</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <a href="tel:7987004209" className="block">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6 text-center">
-                  <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Phone className="w-7 h-7 text-blue-600" />
-                  </div>
-                  <p className="font-semibold text-slate-900 mb-1">Call Us</p>
-                  <p className="text-sm text-slate-600">+91 7987004209</p>
-                </CardContent>
-              </Card>
-            </a>
-
-            <a href="mailto:advickenterprises@gmail.com" className="block">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6 text-center">
-                  <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Mail className="w-7 h-7 text-blue-600" />
-                  </div>
-                  <p className="font-semibold text-slate-900 mb-1">Email Us</p>
-                  <p className="text-sm text-slate-600">advickenterprises@gmail.com</p>
-                </CardContent>
-              </Card>
-            </a>
-
-            <a href="https://wa.me/917987004209" target="_blank" rel="noopener noreferrer" className="block">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6 text-center">
-                  <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Send className="w-7 h-7 text-blue-600" />
-                  </div>
-                  <p className="font-semibold text-slate-900 mb-1">WhatsApp</p>
-                  <p className="text-sm text-slate-600">Chat with us</p>
-                </CardContent>
-              </Card>
-            </a>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {contactInfo.map((info, index) => {
+              const Icon = info.icon
+              return (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-3 text-slate-900">{info.title}</h3>
+                    <div className="space-y-1">
+                      {info.details.map((detail, idx) => (
+                        <p key={idx} className="text-slate-600 text-sm">
+                          {info.links && info.links[idx] ? (
+                            <a href={info.links[idx]} className="hover:text-blue-600 transition-colors">
+                              {detail}
+                            </a>
+                          ) : (
+                            detail
+                          )}
+                        </p>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>

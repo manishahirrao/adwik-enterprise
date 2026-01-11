@@ -1,12 +1,39 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Activity, Gauge, Thermometer, Zap, Factory, Droplets, Layers, ArrowRight, CheckCircle2, Phone, Mail, Settings, Wind, Waves } from 'lucide-react'
+import { Activity, Gauge, Thermometer, Zap, Factory, Droplets, Layers, CheckCircle2, Phone, Mail, Settings, Wind, Waves } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import EnquiryPopup from '@/components/EnquiryPopup'
+
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 }
+}
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0 }
+}
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0 }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+}
 
 export default function Products() {
   const [enquiryOpen, setEnquiryOpen] = useState(false)
@@ -365,66 +392,83 @@ export default function Products() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             {products.map((product, index) => {
               const Icon = product.icon
               return (
-                <Card key={index} className="hover:shadow-lg transition-shadow overflow-hidden flex flex-col">
-                  <div className="relative h-48 bg-slate-100">
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <CardContent className="p-6 flex-1 flex flex-col">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
-                        <Icon className="w-6 h-6 text-blue-600" />
-                      </div>
-                      <div>
-                        <div className="inline-block bg-slate-100 text-slate-700 px-2 py-1 text-xs font-medium rounded mb-2">
-                          {product.category}
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="hover:shadow-xl transition-shadow overflow-hidden flex flex-col h-full">
+                    <div className="relative h-48 bg-slate-100 overflow-hidden group">
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <CardContent className="p-6 flex-1 flex flex-col">
+                      <div className="flex items-start gap-4 mb-4">
+                        <motion.div 
+                          className="bg-blue-100 p-3 rounded-lg flex-shrink-0"
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <Icon className="w-6 h-6 text-blue-600" />
+                        </motion.div>
+                        <div>
+                          <div className="inline-block bg-slate-100 text-slate-700 px-2 py-1 text-xs font-medium rounded mb-2">
+                            {product.category}
+                          </div>
+                          <h3 className="font-bold text-lg text-slate-900">{product.title}</h3>
                         </div>
-                        <h3 className="font-bold text-lg text-slate-900">{product.title}</h3>
                       </div>
-                    </div>
-                    
-                    <p className="text-slate-600 mb-4">{product.description}</p>
-                    
-                    <div className="space-y-2 mb-6 flex-1">
-                      <p className="text-sm font-semibold text-slate-700">Key Features:</p>
-                      <ul className="space-y-1">
-                        {product.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                            <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                      
+                      <p className="text-slate-600 mb-4">{product.description}</p>
+                      
+                      <div className="space-y-2 mb-6 flex-1">
+                        <p className="text-sm font-semibold text-slate-700">Key Features:</p>
+                        <ul className="space-y-1">
+                          {product.features.map((feature, idx) => (
+                            <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
+                              <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div className="flex gap-2 mt-auto">
-                      <Button 
-                        onClick={() => handleEnquiry(product.title)}
-                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
-                      >
-                        <Mail className="w-4 h-4 mr-2" />
-                        Inquiry
-                      </Button>
-                      <a href="tel:7987004209" className="flex-1">
-                        <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
-                          <Phone className="w-4 h-4 mr-2" />
-                          Call
+                      <div className="flex gap-2 mt-auto">
+                        <Button 
+                          onClick={() => handleEnquiry(product.title)}
+                          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white group"
+                        >
+                          <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                          Inquiry
                         </Button>
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
+                        <a href="tel:7987004209" className="flex-1">
+                          <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50 group">
+                            <Phone className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                            Call
+                          </Button>
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -460,31 +504,79 @@ export default function Products() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Need Help Selecting Products?
-            </h2>
-            <p className="text-xl mb-8 text-blue-100">
-              Our team can help you choose the right instrumentation for your application
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-slate-100">
-                  Contact Us
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <a href="tel:7987004209">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  <Phone className="mr-2 h-4 w-4" />
-                  Call Now
-                </Button>
-              </a>
+      <section className="py-16 bg-white/80">
+        <motion.div 
+          className="container mx-auto px-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="grid md:grid-cols-2">
+              <motion.div 
+                className="p-8 md:p-12 text-white"
+                variants={fadeInLeft}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Need Help Selecting Products?
+                </h2>
+                <p className="text-slate-300 mb-6 text-lg">
+                  Our technical experts can help you choose the right instrumentation for your specific application requirements. Get personalized recommendations and technical support.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-blue-400" />
+                    <span className="text-slate-200">+91 7987004209</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-slate-200">advickenterprises@gmail.com</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <svg className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-slate-200 text-sm">Bhopal, Madhya Pradesh</span>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <Button 
+                    size="lg" 
+                    onClick={() => setEnquiryOpen(true)}
+                    className="bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all"
+                  >
+                    <Mail className="mr-2 h-4 w-4" />
+                    Send Enquiry
+                  </Button>
+                  <a href="https://wa.me/917987004209?text=Hello%2C%20I%20need%20help%20selecting%20industrial%20instrumentation%20products" target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" variant="outline" className="border-white bg-slate-700 text-white hover:bg-white hover:text-slate-900 transition-all">
+                      <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                      </svg>
+                      WhatsApp
+                    </Button>
+                  </a>
+                </div>
+              </motion.div>
+              <motion.div 
+                className="relative h-64 md:h-auto overflow-hidden"
+                variants={fadeInRight}
+              >
+                <Image
+                  src="/adt673_calibrator.jpg"
+                  alt="Industrial Instrumentation Products"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Enquiry Popup */}

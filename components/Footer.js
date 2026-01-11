@@ -123,7 +123,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-lg font-bold mb-6">Our Services</h3>
+            <h3 className="text-lg font-bold mb-6">Our Products</h3>
             <ul className="space-y-3">
               {services.slice(0, 4).map((service) => (
                 <li key={service}>
@@ -213,12 +213,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-blue-200">
             <p>© 2025 Advick Enterprises. All rights reserved.</p>
-            <p>
-              Design by{' '}
-              <a href="https://esuvidha.co.in/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                e-Suvidha Technology
-              </a>
-            </p>
+           
           </div>
         </div>
       </div>

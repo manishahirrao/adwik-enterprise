@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 
-export default function Navigation() {
+export default function Navigation({ onEnquiryClick }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
@@ -30,12 +30,14 @@ export default function Navigation() {
   ]
 
   return (
-    <>
+    <div className="fixed top-0 left-0 right-0 z-50">
       {/* Top Bar */}
       <motion.div
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="bg-blue-900 text-white py-2 text-sm"
+        className={`bg-blue-900 text-white py-2 text-sm transition-all duration-300 ${
+          scrolled ? 'h-0 py-0 overflow-hidden' : 'h-auto'
+        }`}
       >
         <div className="container mx-auto px-4 flex flex-wrap justify-between items-center">
           <div className="flex items-center space-x-4">
@@ -53,7 +55,7 @@ export default function Navigation() {
 
       {/* Main Navigation */}
       <motion.nav
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`transition-all duration-300 ${
           scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
         }`}
       >
@@ -113,11 +115,12 @@ export default function Navigation() {
 
             {/* CTA Button */}
             <div className="hidden md:block">
-              <Link href="/contact">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                  Get Quote
-                </Button>
-              </Link>
+              <Button 
+                onClick={onEnquiryClick}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                Get Quote
+              </Button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -158,16 +161,20 @@ export default function Navigation() {
                     </motion.div>
                   </Link>
                 ))}
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white mt-4">
-                    Get Quote
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={() => {
+                    setMobileMenuOpen(false)
+                    onEnquiryClick()
+                  }}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white mt-4"
+                >
+                  Get Quote
+                </Button>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.nav>
-    </>
+    </div>
   )
 }
