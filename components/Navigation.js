@@ -35,9 +35,8 @@ export default function Navigation({ onEnquiryClick }) {
       <motion.div
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`bg-blue-900 text-white py-2 text-sm transition-all duration-300 ${
-          scrolled ? 'h-0 py-0 overflow-hidden' : 'h-auto'
-        }`}
+        transition={{ duration: 0.3 }}
+        className="bg-blue-900 text-white py-2 text-sm"
       >
         <div className="container mx-auto px-4 flex flex-wrap justify-between items-center">
           <div className="flex items-center space-x-4">
@@ -67,7 +66,7 @@ export default function Navigation({ onEnquiryClick }) {
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center space-x-3"
               >
-                <div className="relative w-12 h-12">
+                <div className="relative w-16 h-16">
                   <Image
                     src="/logo.png"
                     alt="Advick Enterprises Logo"
@@ -75,11 +74,8 @@ export default function Navigation({ onEnquiryClick }) {
                     className="object-contain"
                   />
                 </div>
-                <div>
-                  <div className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                    Advick Enterprises
-                  </div>
-                  <div className="text-xs text-slate-600">Since 2018</div>
+                <div className="text-2xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                  Advick Enterprises
                 </div>
               </motion.div>
             </Link>

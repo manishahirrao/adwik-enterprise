@@ -40,10 +40,10 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-2"
+            className="md:col-span-1"
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="relative w-12 h-12">
+            <div className="flex items-center space-x-4 mb-6">
+              <div className="relative w-20 h-20">
                 <Image
                   src="/logo.png"
                   alt="Advick Enterprises Logo"
@@ -52,8 +52,8 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <div className="text-lg font-bold">Advick Enterprises</div>
-                <div className="text-xs text-blue-200">Since 2018</div>
+                <div className="text-2xl font-bold">Advick Enterprises</div>
+                <div className="text-sm text-blue-200 mt-1">GST: 23EAYPS4869D1ZY</div>
               </div>
             </div>
             <p className="text-blue-100 mb-6">
@@ -125,7 +125,7 @@ export default function Footer() {
           >
             <h3 className="text-lg font-bold mb-6">Our Products</h3>
             <ul className="space-y-3">
-              {services.slice(0, 4).map((service) => (
+              {services.map((service) => (
                 <li key={service}>
                   <Link href="/products">
                     <motion.div
@@ -177,13 +177,13 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <p className="text-blue-100">
+                <p className="text-blue-100 text-sm">
                   E1/203, Fortune Divine City, Misrod, Bhopal, MP 462026
                 </p>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <div className="text-blue-100">
+              <div className="flex items-start space-x-3">
+                <Mail className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
+                <div className="text-blue-100 text-sm">
                   <a href="mailto:advickenterprises@gmail.com" className="hover:text-white transition-colors block">
                     advickenterprises@gmail.com
                   </a>
@@ -192,9 +192,9 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <div className="text-blue-100">
+              <div className="flex items-start space-x-3">
+                <Phone className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
+                <div className="text-blue-100 text-sm">
                   <a href="tel:7987004209" className="hover:text-white transition-colors block">
                     7987004209
                   </a>
@@ -211,9 +211,19 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-blue-800">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-blue-200">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-blue-200">
             <p>© 2025 Advick Enterprises. All rights reserved.</p>
-           
+            <p>
+              Designed by{' '}
+              <a 
+                href="https://adwikindia.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-300 hover:text-white transition-colors font-medium"
+              >
+                AdwikIndia
+              </a>
+            </p>
           </div>
         </div>
       </div>
