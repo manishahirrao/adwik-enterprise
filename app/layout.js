@@ -12,8 +12,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
+      <body className={`${inter.className} overflow-x-hidden`}>
         <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
